@@ -11,7 +11,7 @@ export class Requestable implements IDestroyable {
 
   protected cancelRequest(requestOrIndex: RequestPromise | number) {
     const indexToDelete = isNumber(requestOrIndex)
-      ? requestOrIndex as number
+      ? (requestOrIndex as number)
       : this.requests.findIndex(item => item === requestOrIndex);
 
     const request = this.requests[indexToDelete];
