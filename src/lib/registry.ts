@@ -1,11 +1,11 @@
 import { EventEmitter } from 'events';
-import { IKeyable, Key } from '../types/keyable';
+import { IKeyable, Key } from '../types';
 
 export enum RegistryEventType {
   REGISTER = 'register'
 }
 
-export abstract class Registry<T extends IKeyable> extends EventEmitter {
+export class Registry<T extends IKeyable> extends EventEmitter {
   private registry: Map<Key, T> = new Map();
 
   public register(item: T): T {
