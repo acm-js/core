@@ -1,6 +1,6 @@
 {
   "name": "@acm-js/core",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Core utils",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
@@ -35,7 +35,7 @@
     "version": "standard-version",
     "clean": "trash build test",
     "prepare-release-next": "run-s test cov:check doc:html version doc:publish",
-    "prepare-release": "run-s version",
+    "prepare-release": "run-s build version",
     "release": "run-s prepare-release && git push --follow-tags origin master && npm publish",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('@acm-js/system must be installed with Yarn: https://yarnpkg.com/')\""
   },
