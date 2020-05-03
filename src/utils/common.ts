@@ -3,7 +3,7 @@ export function isNumber(value: any) {
   return typeof value === 'number' && !Number.isNaN(value);
 }
 
-export function mixins<T extends { new (...args: any[]) }>(constructor: T) {
+export function mixin(constructor: any) {
   return (ctors: any[]) => {
     ctors.forEach(ctor => {
       Object.getOwnPropertyNames(ctor.prototype).forEach(name => {
