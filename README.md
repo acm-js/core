@@ -1,3 +1,3 @@
-# @acm-js/system
+# @acm-js/core
 
-Base acm system wrapper
+Core utils

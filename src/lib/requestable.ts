@@ -1,0 +1,30 @@
+import { RequestPromise } from 'request-promise';
+import { IDestroyable } from '../types/destroyable';
+import { isNumber } from '../utils';
+
+export class Requestable implements IDestroyable {
+  protected requests: RequestPromise[] = [];
+
+  public destroy(): void {
+    this.cancelAllRequests();
+  }
+
+  protected cancelRequest(requestOrIndex: RequestPromise | number) {
+    const indexToDelete = isNumber(requestOrIndex)
+      ? requestOrIndex as number
+      : this.requests.findIndex(item => item === requestOrIndex);
+
+    const request = this.requests[indexToDelete];
+
+    if (indexToDelete >= 0) {
+      this.requests.splice(indexToDelete, 1);
+    }
+
+    request?.cancel();
+  }
+
+  protected cancelAllRequests() {
+    this.requests.forEach(request => request?.cancel());
+    this.requests = [];
+  }
+}
