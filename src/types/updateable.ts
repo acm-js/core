@@ -1,3 +1,3 @@
-export interface IUpdateable<T = void, R = number> {
+export interface IUpdateable<T = void> {
   update(time?: number): T;
 }
