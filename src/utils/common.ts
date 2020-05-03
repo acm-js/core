@@ -3,7 +3,7 @@ export function isNumber(value: any) {
 }
 
 export function mixin(constructor: any) {
-  return (...ctors: any[]) => {
+  return (ctors: any[]) => {
     ctors.forEach(ctor => {
       Object.getOwnPropertyNames(ctor.prototype).forEach(name => {
         Object.defineProperty(
