@@ -1,5 +1,5 @@
 import { RequestPromise } from 'request-promise';
-import { IDestroyable } from '../types/destroyable';
+import { IDestroyable } from '../types';
 import { isNumber } from '../utils';
 
 export class Requestable implements IDestroyable {
