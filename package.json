@@ -1,6 +1,6 @@
 {
   "name": "@acm-js/core",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "Core utils",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
