@@ -6,7 +6,7 @@ export enum RegistryEventType {
 }
 
 export class Registry<T extends IKeyable, R = T> extends EventEmitter {
-  private registry: Map<Key, R> = new Map();
+  protected registry: Map<Key, R> = new Map();
 
   public register(item: T, ...args: any[]): R {
     const key = item.uniqueKey;
