@@ -1,5 +1,5 @@
 export function memoize(hashFunction?: (...args: any[]) => any) {
-  return (target: object, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) => {
+  return (target: any, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) => {
     if (descriptor.value != null) {
       descriptor.value = getNewFunction(descriptor.value, hashFunction);
     } else if (descriptor.get != null) {
