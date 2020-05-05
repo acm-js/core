@@ -5,7 +5,7 @@ export enum RegistryEventType {
   REGISTER = 'register'
 }
 
-export class Registry<T extends IKeyable, R> extends EventEmitter {
+export class Registry<T extends IKeyable, R = T> extends EventEmitter {
   private registry: Map<Key, R> = new Map();
 
   public register(item: T, ...args: any[]): R {
