@@ -2,7 +2,8 @@ import { EventEmitter } from 'events';
 import { IKeyable, Key } from '../types';
 
 export enum RegistryEventType {
-  REGISTER = 'register'
+  REGISTERED = 'register',
+  UNREGISTERED = 'unregister'
 }
 
 export class Registry<T extends IKeyable, R = T> extends EventEmitter {
@@ -18,10 +19,22 @@ export class Registry<T extends IKeyable, R = T> extends EventEmitter {
 
     const wrappedItem = this.wrapRegistryItem(item, ...args);
 
-    this.emit(RegistryEventType.REGISTER, item, wrappedItem);
     this.registry.set(key, wrappedItem);
+    this.emit(RegistryEventType.REGISTERED, item, wrappedItem);
 
     return wrappedItem;
+  }
+
+  public unregister(item: T, ...args: any[]): void {
+    const key = item.uniqueKey;
+    const existingItem = this.registry.get(key);
+
+    if (!existingItem) {
+      return;
+    }
+
+    this.registry.delete(key);
+    this.emit(RegistryEventType.UNREGISTERED, item, ...args);
   }
 
   public wrapRegistryItem(item: T, ...args: any[]): R {
