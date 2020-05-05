@@ -5,10 +5,10 @@ export enum RegistryEventType {
   REGISTER = 'register'
 }
 
-export class Registry<T extends IKeyable> extends EventEmitter {
-  private registry: Map<Key, T> = new Map();
+export class Registry<T extends IKeyable, R> extends EventEmitter {
+  private registry: Map<Key, R> = new Map();
 
-  public register(item: T): T {
+  public register(item: T, ...args: any[]): R {
     const key = item.uniqueKey;
     const existingItem = this.registry.get(key);
 
@@ -16,10 +16,19 @@ export class Registry<T extends IKeyable> extends EventEmitter {
       return existingItem;
     }
 
-    this.emit(RegistryEventType.REGISTER, item);
+    const wrappedItem = this.wrapRegistryItem(item, ...args);
 
-    this.registry.set(key, item);
+    this.emit(RegistryEventType.REGISTER, item, wrappedItem);
+    this.registry.set(key, wrappedItem);
 
-    return item;
+    return wrappedItem;
+  }
+
+  public wrapRegistryItem(item: T, ...args: any[]): R {
+    return item as unknown as R;
+  }
+
+  public unwrapRegistryItem(registryItem: R): T {
+    return registryItem as unknown as T;
   }
 }
