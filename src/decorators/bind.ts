@@ -1,5 +1,5 @@
 // tslint:disable-next-line:ban-types
-export function bind<T extends Function>(
+export function bind<T extends Function = Function>(
   target: object,
   propertyKey: string,
   descriptor: TypedPropertyDescriptor<T>
