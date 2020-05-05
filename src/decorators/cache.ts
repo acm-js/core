@@ -1,3 +1,7 @@
+/**
+ * @see https://github.com/acm-js/core/docs/decorators/cache.md
+ */
+
 /* tslint:disable:no-shadowed-variable ban-types max-classes-per-file */
 const GLOBAL_SYMBOL = Symbol('__global_cache');
 
