@@ -1,15 +1,3 @@
-export function memoize(hashFunction?: (...args: any[]) => any) {
-  return (target: any, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) => {
-    if (descriptor.value != null) {
-      descriptor.value = getNewFunction(descriptor.value, hashFunction);
-    } else if (descriptor.get != null) {
-      descriptor.get = getNewFunction(descriptor.get, hashFunction);
-    } else {
-      throw new Error('Only put a memoize() decorator on a method or get accessor.');
-    }
-  };
-}
-
 let counter = 0;
 function getNewFunction(originalMethod: () => void, hashFunction?: (...args: any[]) => any) {
   const identifier = ++counter;
@@ -58,5 +46,17 @@ function getNewFunction(originalMethod: () => void, hashFunction?: (...args: any
     }
 
     return returnedValue;
+  };
+}
+
+export function memoize(hashFunction?: (...args: any[]) => any) {
+  return (target: any, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) => {
+    if (descriptor.value != null) {
+      descriptor.value = getNewFunction(descriptor.value, hashFunction);
+    } else if (descriptor.get != null) {
+      descriptor.get = getNewFunction(descriptor.get, hashFunction);
+    } else {
+      throw new Error('Only put a memoize() decorator on a method or get accessor.');
+    }
   };
 }
