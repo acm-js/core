@@ -5,12 +5,12 @@ export function inherits(derivedCtor: any, baseCtors: any[]) {
       ...Object.getOwnPropertySymbols(baseCtor.prototype)
     ];
 
-    names.forEach(name => (
+    names.forEach(name =>
       Object.defineProperty(
         derivedCtor.prototype,
         name,
         Object.getOwnPropertyDescriptor(baseCtor.prototype, name)
       )
-    ));
+    );
   });
 }

@@ -38,10 +38,10 @@ export class Registry<T extends IKeyable, R = T> extends EventEmitter {
   }
 
   public wrapRegistryItem(item: T, ...args: any[]): R {
-    return item as unknown as R;
+    return (item as unknown) as R;
   }
 
   public unwrapRegistryItem(registryItem: R): T {
-    return registryItem as unknown as T;
+    return (registryItem as unknown) as T;
   }
 }

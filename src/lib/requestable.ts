@@ -1,4 +1,7 @@
-import request, { Options as RequestOptions, RequestPromise } from 'request-promise';
+import request, {
+  Options as RequestOptions,
+  RequestPromise
+} from 'request-promise';
 import { IDestroyable } from '../types';
 import { isNumber } from '../utils';
 

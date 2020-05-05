@@ -1,10 +1,13 @@
 /* tslint:disable:ban-types */
 let counter = 0;
-function getNewFunction(originalMethod: () => void, hashFunction?: (...args: any[]) => any) {
+function getNewFunction(
+  originalMethod: () => void,
+  hashFunction?: (...args: any[]) => any
+) {
   const identifier = ++counter;
 
   // The function returned here gets called instead of originalMethod.
-  return function (...args: any[]) {
+  return function(...args: any[]) {
     const propValName = `__memoized_value_${identifier}`;
     const propMapName = `__memoized_map_${identifier}`;
 
@@ -22,9 +25,7 @@ function getNewFunction(originalMethod: () => void, hashFunction?: (...args: any
       }
       const myMap: Map<any, any> = this[propMapName];
 
-      const hashKey = hashFunction
-        ? hashFunction.apply(this, args)
-        : args[0];
+      const hashKey = hashFunction ? hashFunction.apply(this, args) : args[0];
 
       if (myMap.has(hashKey)) {
         returnedValue = myMap.get(hashKey);
@@ -50,10 +51,12 @@ function getNewFunction(originalMethod: () => void, hashFunction?: (...args: any
   };
 }
 
-export function freeze(
-  hashFunction?: (...args: any[]) => any
-) {
-  return (target: any, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) => {
+export function freeze(hashFunction?: (...args: any[]) => any) {
+  return (
+    target: any,
+    propertyKey: string,
+    descriptor: TypedPropertyDescriptor<any>
+  ) => {
     if (descriptor.value != null) {
       descriptor.value = getNewFunction(descriptor.value, hashFunction);
     } else if (descriptor.get != null) {
