@@ -50,7 +50,7 @@ function getNewFunction(originalMethod: () => void, hashFunction?: (...args: any
   };
 }
 
-export function memoize(
+export function freeze(
   hashFunction?: (...args: any[]) => any
 ) {
   return (target: any, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) => {

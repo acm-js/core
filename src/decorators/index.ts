@@ -1,2 +1,2 @@
 export * from './bind';
-export * from './memoize';
+export * from './freeze';
