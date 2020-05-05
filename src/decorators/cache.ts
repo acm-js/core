@@ -1,5 +1,5 @@
 /**
- * @see https://github.com/acm-js/core/docs/decorators/cache.md
+ * @see https://github.com/acm-js/core/blob/master/docs/decorators/cache.md
  */
 
 /* tslint:disable:no-shadowed-variable ban-types max-classes-per-file */
